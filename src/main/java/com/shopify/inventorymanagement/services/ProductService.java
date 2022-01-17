@@ -17,11 +17,22 @@ public class ProductService implements IProductService{
         this.productRepository = productRepository;
     }
 
+    /**
+     * Function to retrieve all the products in the inventory
+     * @return List of Products in the inventory
+     */
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
+    /**
+     * Function to update the product details
+     * @param newProduct Product with new product details
+     * @param productId Id of the product
+     * @return Product with updated details
+     * @throws CustomException in case of invalid productId
+     */
     @Override
     public Product updateProduct(Product newProduct, long productId) throws CustomException{
         if(productRepository.existsById(productId)){
@@ -34,6 +45,11 @@ public class ProductService implements IProductService{
         }
     }
 
+    /**
+     * Updates the existing product with the new values
+     * @param product Existing product in the inventory
+     * @param newProduct Product with new details
+     */
     private void updateProductDetails(Product product, Product newProduct) {
         if(newProduct.getProductName() != null && !newProduct.getProductName().equals(""))
             product.setProductName(newProduct.getProductName());
@@ -58,6 +74,11 @@ public class ProductService implements IProductService{
         }
     }
 
+    /**
+     * Function to delete an existing product
+     * @param productId Id of the product
+     * @throws CustomException in case of invalid productId
+     */
     @Override
     public void deleteProduct(long productId) throws CustomException{
         if(productRepository.existsById(productId)){
@@ -67,6 +88,11 @@ public class ProductService implements IProductService{
         }
     }
 
+    /**
+     * Function to add a new product to the inventory
+     * @param product Product to be added
+     * @return Newly added product
+     */
     @Override
     public Product addProduct(Product product) {
         return productRepository.save(product);

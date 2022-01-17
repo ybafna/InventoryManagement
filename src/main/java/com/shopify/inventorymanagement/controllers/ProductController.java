@@ -31,12 +31,22 @@ public class ProductController {
         this.csvService = csvService;
     }
 
+    /**
+     *
+     * @return List of Products in the inventory
+     */
     @GetMapping("/products")
     private ResponseEntity<GenericResponse<List<Product>>> getAllProducts(){
         List<Product> productList = productService.getAllProducts();
         return ResponseEntity.ok(new GenericResponse<>(productList, null));
     }
 
+    /**
+     *
+     * @param product Product with new product details
+     * @param productId Id of the product
+     * @return Product with updated details or 404 Not Found if the productId is incorrect
+     */
     @PutMapping("/product/{productId}")
     private ResponseEntity<GenericResponse<Product>> updateProduct(@RequestBody Product product, @PathVariable("productId") long productId){
         try {
@@ -48,12 +58,22 @@ public class ProductController {
         }
     }
 
+    /**
+     *
+     * @param product Product to be added
+     * @return Newly added product
+     */
     @PostMapping("/product")
     private ResponseEntity<GenericResponse<Product>> addProduct(@RequestBody Product product){
         Product addedProduct = productService.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body((new GenericResponse<>(addedProduct, null)));
     }
 
+    /**
+     *
+     * @param productId Id of the product
+     * @return Nothing in case of successful delete or a 404 Not Found if productId is incorrect
+     */
     @DeleteMapping("product/{productId}")
     private ResponseEntity<Object> deleteProduct(@PathVariable("productId") long productId){
         try {
@@ -66,6 +86,10 @@ public class ProductController {
     }
 
 
+    /**
+     *
+     * @return CSV file containing all the products and its details
+     */
     @GetMapping("/download")
     public ResponseEntity<Resource> downloadCSV(){
         String filename = "products.csv";

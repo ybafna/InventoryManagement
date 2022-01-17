@@ -15,7 +15,13 @@ import java.util.List;
 
 public class CSVConverter {
 
-    public static ByteArrayInputStream tutorialsToCSV(List<Product> productList) {
+    /**
+     * Function to convert the list of products into a CSV file
+     * @param productList List of Products
+     * @exception CustomException in case of any IOException while creating file
+     * @return A file stream containing product information
+     */
+    public static ByteArrayInputStream tutorialsToCSV(List<Product> productList) throws CustomException{
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
