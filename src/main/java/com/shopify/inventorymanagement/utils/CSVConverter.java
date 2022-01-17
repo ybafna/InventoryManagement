@@ -10,7 +10,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +25,8 @@ public class CSVConverter {
                     "Product Description",
                     "Image Url",
                     "Quantity",
-                    "Price");
+                    "Price",
+                    "IsOutOfStock");
 
             csvPrinter.printRecord(header);
             for (Product product : productList) {
@@ -36,7 +36,8 @@ public class CSVConverter {
                         product.getProductDescription(),
                         product.getUrlToImage(),
                         String.valueOf(product.getQuantity()),
-                        String.valueOf(product.getPrice()));
+                        String.valueOf(product.getPrice()),
+                        String.valueOf(product.isOutOfStock()));
 
                 csvPrinter.printRecord(data);
             }

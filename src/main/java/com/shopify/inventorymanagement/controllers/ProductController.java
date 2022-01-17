@@ -5,6 +5,8 @@ import com.shopify.inventorymanagement.exceptions.CustomException;
 import com.shopify.inventorymanagement.models.Product;
 import com.shopify.inventorymanagement.services.ICSVService;
 import com.shopify.inventorymanagement.services.IProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +20,8 @@ import java.util.List;
 
 @Controller
 public class ProductController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     private final IProductService productService;
     private final ICSVService csvService;
@@ -39,6 +43,7 @@ public class ProductController {
             Product updatedProduct = productService.updateProduct(product, productId);
             return ResponseEntity.ok(new GenericResponse<>(updatedProduct, null));
         } catch (CustomException ce){
+            LOGGER.debug(ce.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
@@ -54,6 +59,7 @@ public class ProductController {
         try {
             productService.deleteProduct(productId);
         } catch (CustomException ce){
+            LOGGER.debug(ce.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.noContent().build();
@@ -71,6 +77,7 @@ public class ProductController {
                     .contentType(MediaType.parseMediaType("application/csv"))
                     .body(file);
         } catch(CustomException ce){
+            LOGGER.debug(ce.getMessage());
             return ResponseEntity.internalServerError().build();
         }
 

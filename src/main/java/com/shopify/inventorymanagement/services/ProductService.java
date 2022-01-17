@@ -25,7 +25,7 @@ public class ProductService implements IProductService{
     @Override
     public Product updateProduct(Product newProduct, long productId) throws CustomException{
         if(productRepository.existsById(productId)){
-            Product product = productRepository.findById(productId).get();
+            Product product = productRepository.getById(productId);
             updateProductDetails(product, newProduct);
             productRepository.save(product);
             return product;
@@ -35,17 +35,27 @@ public class ProductService implements IProductService{
     }
 
     private void updateProductDetails(Product product, Product newProduct) {
-        if(newProduct.getProductName() != null && newProduct.getProductName() != "")
+        if(newProduct.getProductName() != null && !newProduct.getProductName().equals(""))
             product.setProductName(newProduct.getProductName());
 
-        if(newProduct.getProductDescription() != null && newProduct.getProductDescription() != "")
+        if(newProduct.getProductDescription() != null && !newProduct.getProductDescription().equals(""))
             product.setProductDescription(newProduct.getProductDescription());
 
-        if(newProduct.getUrlToImage() != null && newProduct.getUrlToImage() != "")
+        if(newProduct.getUrlToImage() != null && !newProduct.getUrlToImage().equals(""))
             product.setUrlToImage(newProduct.getUrlToImage());
 
-        product.setPrice(newProduct.getPrice());
-        product.setQuantity(newProduct.getQuantity());
+        if(newProduct.getPrice() > 0)
+            product.setPrice(newProduct.getPrice());
+
+        if(newProduct.isOutOfStock()) {
+            product.setOutOfStock(true);
+            product.setQuantity(0);
+        } else {
+            if(newProduct.getQuantity() > 0) {
+                product.setQuantity(newProduct.getQuantity());
+                product.setOutOfStock(false);
+            }
+        }
     }
 
     @Override

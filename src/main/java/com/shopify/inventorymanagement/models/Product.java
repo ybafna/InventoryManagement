@@ -26,13 +26,15 @@ public class Product implements Serializable {
     private String urlToImage;
     private int quantity;
     private double price;
+    private boolean outOfStock;
 
-    public Product(String productName, String productDescription, String urlToImage, int quantity, double price){
+    public Product(String productName, String productDescription, String urlToImage, int quantity, double price, boolean outOfStock){
         this.productDescription = productDescription;
         this.productName = productName;
         this.urlToImage = urlToImage;
         this.quantity = quantity;
         this.price = price;
+        this.outOfStock = outOfStock;
     }
 
 }
