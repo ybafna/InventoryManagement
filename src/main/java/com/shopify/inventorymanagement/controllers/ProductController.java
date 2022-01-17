@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     /**
-     *
+     * Function to retrieve list of all products in the inventory
      * @return List of Products in the inventory
      */
     @GetMapping("/products")
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     /**
-     *
+     * Function to update an existing product
      * @param product Product with new product details
      * @param productId Id of the product
      * @return Product with updated details or 404 Not Found if the productId is incorrect
@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     /**
-     *
+     * Function to add a new product
      * @param product Product to be added
      * @return Newly added product
      */
@@ -70,7 +70,7 @@ public class ProductController {
     }
 
     /**
-     *
+     * Function to delete an existing product
      * @param productId Id of the product
      * @return Nothing in case of successful delete or a 404 Not Found if productId is incorrect
      */
@@ -87,7 +87,7 @@ public class ProductController {
 
 
     /**
-     *
+     * Function to get product information in a CSV file
      * @return CSV file containing all the products and its details
      */
     @GetMapping("/download")
