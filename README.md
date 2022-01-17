@@ -20,8 +20,8 @@ API Endpoints:
 
 1) GET /products : Retrieves all the products from the database
 2) POST /product : Add a new product to the database
-3) PUT /product : Modify details of an existing product using productId
-4) DELETE /product : Delete a product from database using productId
+3) PUT /product/{productId} : Modify details of an existing product using productId
+4) DELETE /product/{productId} : Delete a product from database using productId
 5) GET /download : Returns a CSV file that contains all the product information.
 
 You may try the above endpoints using Postman. 
