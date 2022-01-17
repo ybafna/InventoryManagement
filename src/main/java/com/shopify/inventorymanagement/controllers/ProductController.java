@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @DeleteMapping("product/{productId}")
-    private ResponseEntity deleteProduct(@PathVariable("productId") long productId){
+    private ResponseEntity<Object> deleteProduct(@PathVariable("productId") long productId){
         try {
             productService.deleteProduct(productId);
         } catch (CustomException ce){
@@ -60,7 +60,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/csv/download")
+    @GetMapping("/download")
     public ResponseEntity<Resource> downloadCSV(){
         String filename = "products.csv";
 
