@@ -6,15 +6,12 @@ Java 8
 
 How to run the project:
 
-Clone the repository<br>
-Import the project into IDE of your choice(IntelliJ/Eclipse..)<br>
-Run the command: gradlew clean build<br>
+1) Clone the repository<br>
+2) Import the project into IDE of your choice(IntelliJ/Eclipse..)<br>
+3) Run the command: gradlew clean build. This will download all the dependencies needed for the project.<br>
+4) Run InventoryManagementApplication.java as application. This will start the tomcat server on http://localhost:8080<br>
 
-This will download all the dependencies needed for the project.<br>
-
-Run InventoryManagementApplication.java as application<br>
-This will start the tomcat server on http://localhost:8080<br>
-For this project, I am using h2 database which will persist the on a file under data/ folder.<br>
+For this project, I am using h2 database which will persist the data on a file under "data/" folder.<br>
 
 API Endpoints:
 
