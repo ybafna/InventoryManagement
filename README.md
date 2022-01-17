@@ -8,7 +8,7 @@ How to run the project:
 
 Clone the repository<br>
 Import the project into IDE of your choice(IntelliJ/Eclipse..)<br>
-Run the command: gradle clean build<br>
+Run the command: gradlew clean build<br>
 
 This will download all the dependencies needed for the project.<br>
 
